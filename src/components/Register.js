@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 
 const Register = () => {
+    
+    
     return (
         <div className="register-container">
         <div>Register An Account!</div>

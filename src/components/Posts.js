@@ -11,8 +11,10 @@ return (
 
 
 {
-    posts.map((post, index) =>  
-        <div className="post-container" key={post.id}>
+    posts.map((post) =>  
+    
+        <div className="post-container" key={post._id}>
+            <div></div>
         <h2>{post.title}: {post.price}</h2>
         <h3>{post.description}</h3>
         </div>
