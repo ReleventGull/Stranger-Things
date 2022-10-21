@@ -1,12 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
+import {Link} from "react-router-dom"
 
 
 
 const Posts = ({posts}) => {
-console.log("Posts from Posts", posts)
+const [searchBy, setSearchBy] = useState('')
+
 
 return (
 <div className="posts-body">
+
+<div className="post-search">
+    <form>
+<input className="search-post"  placeholder="Search for a Post"></input>
+</form>
+<Link to ="/makepost"className="create-post">Create a post</Link>
+</div>
+
+
 
 
 
@@ -25,10 +36,6 @@ return (
 
 
 </div>
-
-
-
-
 )}
 
 

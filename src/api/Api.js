@@ -17,8 +17,13 @@ export const FetchPost = async () => {
 
 
 
-export const isUserLoggedIn = async () => {
-    return true ;
+export const isUserLoggedIn = async (token) => {
+    if (token) {
+      console.log("token is true",token)
+      return true
+    } else {
+      return false
+    }
  };
 
 
@@ -37,10 +42,66 @@ try {
           }
         })
       })
+      return await response.json()
 } catch(error) {
     console.error(error)
 }
 }
+
+
+
+export const registerUser = async (username, password) => {
+  try {
+    const response = await fetch('https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT/users/register', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            username: username,
+            password: password
+          }
+        })
+      })
+      return  response.json()
+} catch(error) {
+    console.error(error)
+}
+}
+
+
+
+
+
+
+export const createPost = async(title, description, price, willDeliver, token) => {
+  try {
+    const response = await fetch('https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT/posts', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          willDeliver: willDeliver
+          }
+        })
+      })
+      return  response.json()
+} catch(error) {
+    console.error(error)
+}
+
+
+
+
+}
+
 
 
 

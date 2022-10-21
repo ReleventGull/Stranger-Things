@@ -1,6 +1,12 @@
 body {
     margin: 0;
+    background-image: url("https://wallpapercrafter.com/desktop/121261-artwork-illustration-simple-simple-background-minimalism-black-dark-black-background-dark-background-colorful-fictional-fictional-character-fictional-characters-charac.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     
+ 
 }
 
 .siteheader {
@@ -9,19 +15,30 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    background-color: #b33f62;
+    background-color: #00000054;
     height: 10vh;
     box-shadow: 10px, 20px;
 }
 
+.welcome-tag {
+    font-size: 2em;
+    align-self: center;
+    text-align: center;
+    color: white;
+    margin-top: 10vh;
+    
+}
 
-
+.logo {
+    height: 100%;
+}
 /************************************ POSTS FORM ************************************/
 .post-container {
     display: flex;
     flex-direction: column;
     height: 20vh;
-    background-color: #f3c677;
+    background-color: #00000057;
+    color: white;
     margin: 3vh;
     border: 1px solid black
 }
@@ -35,15 +52,15 @@ body {
 }
 
 .link{
-color: black;
+color: white;
 text-decoration: none;
-transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
 
 }
 
 .link:hover {
-    box-shadow: inset 100px 0 0 0 black;
-    color: white;
+    color: red;
+   
 }
 /************************************ POSTS FORM END ************************************/
 
@@ -52,14 +69,14 @@ transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 
 /************************************ REGISTRATION FORM ************************************/
 .register-container {
-    
+    color: white;
     font-size: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 50vh;
     margin-top: 2vh;
-    background-color: #b33f62;
+    background-color: #000000e5;
 }
 
 .register-form {
@@ -69,8 +86,11 @@ transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 
 
 .register-container input {
+    margin: 10px;
+    font-size: 20px;
     width: 40vh;
-    height: 2vh;
+    height: 3vh;
+    border-radius: 20px;
 }
 /************************************ REGISTRATION FORM END ************************************/
 
@@ -80,13 +100,13 @@ transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 
 /************************************ LOGIN FORM ************************************/
 .login-container {
-    
+    color: white;
     font-size: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 50vh;
-    background-color: #b33f62;
+    background-color: #000000e5;
     margin-top: 2vh;
 }
 
@@ -97,18 +117,144 @@ transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 
 
 .login-container input {
+    margin: 10px;
+    font-size: 20px;
     width: 40vh;
-    height: 2vh;
+    height: 3vh;
+    border-radius: 20px;
 }
 
 
 .login-button {
     margin-top: 20px;
+    height: 3vh;
+    border-radius: 40px;
 }
 /************************************ LOGIN FORM END ************************************/
 
 
 
+/************************************ POST FORM  ************************************/
+.post-search {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 9vh;
+    
+}
+
+
+
+.post-search input {
+    color: white;
+    font-size: 2em;
+    height: 4vh;
+    width: 30vh;
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+
+
+
+.post-search input:active {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.create-post{
+    font-size: 2em;
+    color: white;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+    margin-top: 2vh;
+}
+
+.create-post:hover {
+    color: red;
+   
+}
+
+
+
+
+/************************************ POST FORM END ************************************/
+
+
+
+
+
+/************************************ CREATE POST FORM  ************************************/
+.create-post-container {
+    display: flex;
+    flex-direction: column;
+    font-size: 2em;
+    color: white;
+    display: flex;
+    height: 40vh;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.post-title {
+    margin: 1vh;
+    color: white;
+    background-color: transparent;
+    border: none;  
+}
+
+
+.post-title:focus::-webkit-input-placeholder {
+    font-size: .75em;
+    position: relative;
+    top: -5px; 
+    transition: 0.2s ease-out;
+}
+.post-message:focus::-webkit-input-placeholder   {
+    font-size: .75em;
+    position: relative;
+    top: -5px; 
+    transition: 0.2s ease-out;
+}
+.post-message {
+    font-size: 1.2em;
+    color: white;
+    height: 50vh;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    vertical-align: top;
+    
+}
+
+.post-title {
+    height: 2em;
+}
+
+.create-post-button {
+    margin-top: 4vh;
+    color: white;
+    background-color: rgba(56, 56, 56, 0.63);
+    height: 4vh;
+    width: 50%;
+    align-self: center;
+}
+
+.checkbox {
+    height: 2vh;
+    width: 2vh;
+    
+    margin-left: 2vh;
+}
 
 
 
@@ -116,6 +262,4 @@ transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 
 
 
-
-
-
+/************************************ CREATE POST FORM END  ************************************/
