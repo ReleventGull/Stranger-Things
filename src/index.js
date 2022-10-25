@@ -1,8 +1,9 @@
 import React, { useEffect, useState, } from "react"
 import ReactDOM from "react-dom/client"
-import {FetchPost, isUserLoggedIn} from "./api/Api"
+import {FetchPost, fetchUserData} from "./api/Api"
 import {BrowserRouter, Route, Link, Switch, useHistory } from "react-router-dom";
-import { Posts, Register, Login, CreatePost } from "./components";
+import { Posts, Register, Login, CreatePost, Profile, UserPost } from "./components";
+
 
 
 
@@ -17,10 +18,26 @@ import { Posts, Register, Login, CreatePost } from "./components";
 const App = () => {
     const [posts, setPosts] = useState([])
     const [token, setToken] = useState(window.localStorage.getItem("token" || ""))
+    const [userData, setUserData] = useState([])
+    
+    
+
+
+
+console.log("All post", posts)
+console.log("User Data",userData)
+ 
+   useEffect(() => {
+    async function LoadData() {
+        setUserData(await fetchUserData(token))
+    }
+    LoadData()
+   }, [])
+
     
     useEffect(() => {
         async function LoadPosts() {
-        setPosts(await FetchPost())
+        setPosts(await FetchPost(token))
         }
         LoadPosts();
       }, []); // Or [] if effect doesn't need props or state
@@ -29,17 +46,23 @@ const App = () => {
       const history = useHistory();
 
      
-      console.log("Mother fucking", token)
+      
     
       useEffect(() => {
         if (localStorage.getItem("token")){
-            setToken(localStorage.getItem("token"))
-        }else {
+        setToken(localStorage.getItem("token"))
+        }
+        else {
         history.push("/login")
         }
-            }, []);
+            }, [token]);
 
     
+
+
+
+
+
     return (
         <>
         
@@ -47,20 +70,25 @@ const App = () => {
         <img className="logo"src="https://wallpaperaccess.com/full/1920259.jpg"/>
         <nav className="links">
            
+            
+            <Link to="/" className="link-one">Home</Link>
+
+            <Link className="link-two" to="/profile">Profile</Link>
            
-            <Link to="/" className="link">Home</Link>
-            <Link className="link">Profile</Link>
-            <Link className="link" to="/posts">Posts</Link>
+            
+            <Link className="link-three" to="/posts">Posts</Link>
+           
            {
             token ? <a href="#" onClick={() => 
                 {
-                    setToken('')
                     localStorage.removeItem("token")
+                    setToken(null)
                     history.push("/login")
-                }}className="link">Logout</a>: 
-            <>
-            <Link className="link" to="/login">Login</Link> 
-            <Link className="link" to="/register">Register</Link>
+                }}className="link-six">Logout</a>: 
+           
+           <>
+            <Link className="link-four" to="/login">Login</Link> 
+            <Link className="link-five" to="/register">Register</Link>
             </>
            }
             
@@ -76,10 +104,11 @@ const App = () => {
             
             <Switch>
             <Route exact path = "/">
-            
+            <div>Welcome!</div>
             </Route>
+            
             <Route  exact path="/posts">
-            <Posts posts={posts}/>
+            <Posts token={token} setPosts={setPosts} posts={posts}/>
             </Route>
         
             
@@ -94,7 +123,7 @@ const App = () => {
             </Route>
             
             <Route path="/login">
-            <Login setToken={setToken}/>
+            <Login  setToken={setToken}/>
             </Route>
             
             
@@ -102,7 +131,18 @@ const App = () => {
             </Switch>
             
             <Route path="/makepost">
-            <CreatePost token={token}/>
+            <CreatePost setPosts={setPosts} token={token}/>
+            </Route>
+
+
+
+            <Route path="/profile">
+            <Profile token={token} />
+            </Route>
+
+
+            <Route path="/mypost">
+            <UserPost userData={userData}  />
             </Route>
             
             

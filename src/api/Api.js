@@ -1,10 +1,16 @@
 
 
 const BASEURL = "https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT"
-export const FetchPost = async () => {
+
+export const FetchPost = async (token) => {
     
     try {
-        const response = await fetch(`${BASEURL}/posts`)
+        const response = await fetch(`${BASEURL}/posts`, {
+          headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+          }
+        })
         const {data} = await response.json()
         return data.posts
 
@@ -14,6 +20,7 @@ export const FetchPost = async () => {
 
 
 }
+
 
 
 
@@ -95,23 +102,54 @@ export const createPost = async(title, description, price, willDeliver, token) =
       return  response.json()
 } catch(error) {
     console.error(error)
+}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const fetchUserData = async(token) => {
+  try {
+    console.log("token passed in?", token)
+    const response = await fetch('https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT/users/me', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+     })
+      return  response.json()
+} catch(error) {
+    console.error(error)
+}
 }
 
 
 
 
+
+export const deleteUserPost = async(postID, token) => {
+  try {
+    console.log("From API", postID, token)
+  const response = await fetch(`${BASEURL}/posts/${postID}`, {
+  method: "DELETE",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+})
+return(response.json())
+}catch(error) {
+  console.error(error)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

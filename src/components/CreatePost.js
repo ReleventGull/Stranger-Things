@@ -2,20 +2,29 @@ import React, { useState } from "react";
 import {createPost} from "../api/Api"
 import {useHistory} from "react-router-dom"
 
-const CreatePost = ({token}) => {
+const CreatePost = ({token, setPosts}) => {
 const [title, setTitle] = useState('')
 const [desc, setDesc] = useState('')
 const [price, setPrice] = useState('')
 const [deliver, setDeliver] = useState(false)
 
+
+
 const history = useHistory()
-const handleSubmit = async(event) => {
+if(!token) {
+    history.push("/")
+}
+    
+const handleSubmit = async (event) => {
     event.preventDefault()
     const response = await createPost(title, desc, price, deliver, token)
     console.log(response)
+    setPosts((previousState) => [...previousState,  response.data.post])
+    history.push("/posts")
 }
 
 return (
+    
     <div className="create-post-container">
     <form  onSubmit={handleSubmit} className="post-form">
     
@@ -32,20 +41,18 @@ return (
    <span>Will Deliver?</span>
    <input value={deliver} onChange={(event) => setDeliver(event.target.checked)}className="checkbox"type="checkbox"></input>
    </span>
+  
    
     <button  className="create-post-button" type="submit">Create Post</button>
-
-
-
-
-    </form>
+     </form>
+    </div> 
+    
 
 
 
 
 
-
-    </div>
+    
 )
 }
 

@@ -8,20 +8,30 @@ const Register = ({setToken}) => {
 const [username, setUsername] = useState('')
 const [password, setPasssword] = useState('')
 const [password2, setPassword2] = useState('')
+const [errorMessage, setErrorMessage] = useState('')
 
 const history = useHistory()
-const handleSubmit = async (event) => {
+
+    const handleSubmit = async (event) => {
     event.preventDefault()
     if (password !== password2){
-    
+    setErrorMessage("Your passwords do not match!")
     }else {
         try {
-            const {data} = await registerUser(username, password)
-            setToken(data.token)
-            history.push("/")
+            const data = await registerUser(username, password)
+            console.log(data.error)
+            
+            if (data.success) {
+                setToken(data.data.token)
+                localStorage.setItem("token", data.data.token)
+                history.push("/")
+            } else {
+                setErrorMessage(data.error.message)
+            }
+            
         }
         catch(error) {
-            console.log("This shit didn't work")
+            console.error(error)
         }
     }
    
@@ -72,7 +82,8 @@ return (
          <button className="login-button" type="submit">Sign Up!</button>
 
         </form>
-
+        
+        <div>{errorMessage}</div>
 
         <h3>Already have an account? <Link to="/login">Log in!</Link> </h3>
         </div>

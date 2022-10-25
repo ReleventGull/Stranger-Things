@@ -20,6 +20,8 @@ body {
     box-shadow: 10px, 20px;
 }
 
+
+
 .welcome-tag {
     font-size: 2em;
     align-self: center;
@@ -51,17 +53,82 @@ body {
     justify-content: space-around;
 }
 
-.link{
+.link-one{
 color: white;
 text-decoration: none;
 transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
 
 }
 
-.link:hover {
-    color: red;
+.link-two{
+    color: white;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+    
+    }
+    
+.link-three{
+    color: white;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+    
+    }
+    
+.link-four{
+    color: white;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+    
+    }
+.link-five{
+    color: white;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+    
+    }
+    
+.link-six{
+    color: white;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+        
+    }
+
+
+.link-one:hover {
+    color: #D744E8;
    
 }
+.link-two:hover {
+    color: #712AAE;
+   
+}
+
+.link-three:hover {
+    color:  #220D4A;
+   
+}
+
+.link-four:hover {
+    color: #68D4DB ;
+   
+}
+
+.link-five:hover {
+    color: #0E1F48;
+   
+}
+.link-six:hover {
+    color: #0E1F48;
+   
+}
+
+
+
+
+
+
+
 /************************************ POSTS FORM END ************************************/
 
 
@@ -135,6 +202,15 @@ transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
 
 
 /************************************ POST FORM  ************************************/
+.make-account {
+    font-size: 2em;
+    color: white;
+    text-decoration: none;
+    margin-top: 2vh;
+}
+
+
+
 .post-search {
     display: flex;
     justify-content: center;
@@ -256,10 +332,60 @@ transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
     margin-left: 2vh;
 }
 
-
-
-
-
-
-
 /************************************ CREATE POST FORM END  ************************************/
+
+
+
+
+
+/************************************ PROFILE  ************************************/
+.please-login {
+    font-size: 2em;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    
+}
+
+
+.profile-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.profile-link{
+    font-size: 2em;
+    color: white;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+    
+}
+    
+.profile-link:hover {
+        color: red;
+       
+}
+
+
+
+.profile-image {
+    height: 36px;
+    margin-right: 10px;
+   
+}
+
+
+
+
+.profile-container span {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 2vh;
+}
+/************************************ PROFILE  END ************************************/
+
+

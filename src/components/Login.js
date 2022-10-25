@@ -7,23 +7,41 @@ import { checkUsers } from "../api/Api";
 
 
 
-const Login = ({setToken}) => {
+const Login = ({setToken, setUserPost}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
     
     const history = useHistory()
 
     
     const handleLogin = async (event) => {
-
     event.preventDefault()
     try {
-        const {data} = await checkUsers(username, password)
-        setToken(data.token)
-        localStorage.setItem("token", data.token)
+        const data = await checkUsers(username, password)
+        console.log(data)
         
         
-        history.push("/")
+        if (data.success){
+            setToken(data.token)
+            localStorage.setItem("token", data.data.token)
+            history.push("/")
+            // const data2 = await fetchUserData(data.token)
+            // const posts= data2.data.posts
+            // console.log(posts)
+            // setUserPost(posts)
+        } else {
+            setUsername('')
+            setPassword('')
+            setErrorMessage(data.error.message)
+        }
+       
+        
+        
+                
+            
+         
+    
     }catch(error){
         console.error(error)
     }
@@ -36,7 +54,7 @@ const Login = ({setToken}) => {
     return (
         
         <div className="login-container">
-        <div>Register An Account!</div>
+        <div>Login!</div>
         
         
         
@@ -69,7 +87,7 @@ const Login = ({setToken}) => {
     
 
         </form>
-        
+        <div>{errorMessage}</div>
         <h3>Don't have an account?<Link to="/register"> Create an Account!</Link> </h3>
         </div>
     )
