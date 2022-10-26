@@ -19,8 +19,9 @@ const App = () => {
     const [posts, setPosts] = useState([])
     const [token, setToken] = useState(window.localStorage.getItem("token" || ""))
     const [userData, setUserData] = useState([])
+    const [postID, setpostID] = useState('')
     
-    
+    console.log("POST ID TO RENDER",postID)
 
 
 
@@ -103,12 +104,13 @@ console.log("User Data",userData)
             
             
             <Switch>
+           
             <Route exact path = "/">
             <div>Welcome!</div>
             </Route>
             
             <Route  exact path="/posts">
-            <Posts token={token} setPosts={setPosts} posts={posts}/>
+            <Posts token={token} setPosts={setPosts} posts={posts} />
             </Route>
         
             
@@ -119,7 +121,6 @@ console.log("User Data",userData)
             
             <Route  path="/register">
             <Register setToken={setToken}/>
-            
             </Route>
             
             <Route path="/login">
@@ -128,7 +129,7 @@ console.log("User Data",userData)
             
             
             
-            </Switch>
+            
             
             <Route path="/makepost">
             <CreatePost setPosts={setPosts} token={token}/>
@@ -144,7 +145,10 @@ console.log("User Data",userData)
             <Route path="/mypost">
             <UserPost userData={userData}  />
             </Route>
+
+          
             
+            </Switch>
             
             
         </> 
