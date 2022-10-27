@@ -21,11 +21,11 @@ const Profile = ({token}) => {
 
         <span>
         <img className="profile-image" src="data:image/png;base64,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"/>
-        <Link className="profile-link">Messages</Link>
+        <Link  to="/profile/messages" className="profile-link">Messages</Link>
         </span>
         
         </div>:
-        <div className="please-login">Please Login!</div>
+        <h1 className="please-login">Please Login!</h1>
       
     )
 }

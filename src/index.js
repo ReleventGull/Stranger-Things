@@ -2,43 +2,23 @@ import React, { useEffect, useState, } from "react"
 import ReactDOM from "react-dom/client"
 import {FetchPost, fetchUserData} from "./api/Api"
 import {BrowserRouter, Route, Link, Switch, useHistory } from "react-router-dom";
-import { Posts, Register, Login, CreatePost, Profile, UserPost } from "./components";
+import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages} from "./components";
 
 
 
-
-
-
-
-
-
-
-
-
-const App = () => {
+    const App = () => {
     const [posts, setPosts] = useState([])
+    const [PostsResults, setPostsResult] = useState([])
     const [token, setToken] = useState(window.localStorage.getItem("token" || ""))
-    const [userData, setUserData] = useState([])
-    const [postID, setpostID] = useState('')
-    
-    console.log("POST ID TO RENDER",postID)
+    const [userData, setUserData] = useState({messages:[], posts:[], username:""})
+    console.log(posts)
 
-
-
-console.log("All post", posts)
-console.log("User Data",userData)
- 
-   useEffect(() => {
-    async function LoadData() {
-        setUserData(await fetchUserData(token))
-    }
-    LoadData()
-   }, [])
 
     
     useEffect(() => {
         async function LoadPosts() {
         setPosts(await FetchPost(token))
+        setPostsResult(await FetchPost(token))
         }
         LoadPosts();
       }, []); // Or [] if effect doesn't need props or state
@@ -46,32 +26,30 @@ console.log("User Data",userData)
       
       const history = useHistory();
 
-     
-      
     
       useEffect(() => {
-        if (localStorage.getItem("token")){
-        setToken(localStorage.getItem("token"))
+        async function LoadUserData() {
+            if (localStorage.getItem("token")){
+                setToken(localStorage.getItem("token"))
+                const response = await fetchUserData(token)
+                setUserData(response.data)
+                history.push("/")
+                }
+                else {
+                history.push("/login")
+                }
         }
-        else {
-        history.push("/login")
-        }
+        LoadUserData()
             }, [token]);
-
-    
-
-
-
 
 
     return (
         <>
         
         <header className="siteheader">
-        <img className="logo"src="https://wallpaperaccess.com/full/1920259.jpg"/>
+        
         <nav className="links">
            
-            
             <Link to="/" className="link-one">Home</Link>
 
             <Link className="link-two" to="/profile">Profile</Link>
@@ -92,49 +70,35 @@ console.log("User Data",userData)
             <Link className="link-five" to="/register">Register</Link>
             </>
            }
-            
-            
-        
-        
-        
-        
         </nav>
-
         </header>
             
-            
             <Switch>
-           
             <Route exact path = "/">
-            <div>Welcome!</div>
+            <Home token={token} userData={userData}/>
             </Route>
             
             <Route  exact path="/posts">
-            <Posts token={token} setPosts={setPosts} posts={posts} />
+            <Posts token={token} PostsResults={PostsResults} setPostsResult={setPostsResult} setPosts={setPosts} posts={posts} />
             </Route>
-        
-            
-            
-            
-            
-            
+         
             
             <Route  path="/register">
             <Register setToken={setToken}/>
             </Route>
             
             <Route path="/login">
-            <Login  setToken={setToken}/>
+            <Login  setUserData={setUserData} setToken={setToken}/>
             </Route>
             
-            
-            
-            
-            
+        
             <Route path="/makepost">
             <CreatePost setPosts={setPosts} token={token}/>
             </Route>
 
+           <Route path="/profile/messages">
+           <Messages userData={userData}/>
+           </Route>
 
 
             <Route path="/profile">
@@ -142,15 +106,16 @@ console.log("User Data",userData)
             </Route>
 
 
+           
             <Route path="/mypost">
-            <UserPost userData={userData}  />
+            <UserPost token={token} userData={userData}  />
             </Route>
 
           
             
             </Switch>
             
-            
+          
         </> 
         
     )

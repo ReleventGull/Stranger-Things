@@ -1,13 +1,13 @@
 import React, { useState,  } from "react"
 import { Link, useHistory  } from "react-router-dom";
-import { checkUsers } from "../api/Api";
+import { checkUsers, fetchUserData } from "../api/Api";
 
 
 
 
 
 
-const Login = ({setToken, setUserPost}) => {
+const Login = ({setToken, setUserData}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
@@ -16,23 +16,24 @@ const Login = ({setToken, setUserPost}) => {
 
     
     const handleLogin = async (event) => {
-    event.preventDefault()
+   event.preventDefault()
     try {
         const data = await checkUsers(username, password)
-        console.log(data)
+        console.log("Data", data)
         
         
         if (data.success){
-            setToken(data.token)
+            
             localStorage.setItem("token", data.data.token)
+            console.log("Token here", data.data.token)
+            setToken(data.data.token)
+        
             history.push("/")
-            // const data2 = await fetchUserData(data.token)
-            // const posts= data2.data.posts
-            // console.log(posts)
-            // setUserPost(posts)
+           
         } else {
             setUsername('')
             setPassword('')
+            
             setErrorMessage(data.error.message)
         }
        

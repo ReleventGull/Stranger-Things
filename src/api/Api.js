@@ -119,20 +119,6 @@ export const createPost = async(title, description, price, willDeliver, token) =
 
 
 
-export const fetchUserData = async(token) => {
-  try {
-    console.log("token passed in?", token)
-    const response = await fetch('https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT/users/me', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-     })
-      return  response.json()
-} catch(error) {
-    console.error(error)
-}
-}
 
 
 
@@ -178,8 +164,23 @@ export const createMessage = async(message, token, postID) => {
 return response.json()
 }catch(error) {
   console.error(error)
-}
+}}
 
 
+
+
+export const fetchUserData = async(token) => {
+  try {
+    const response = await fetch(`${BASEURL}/users/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+    return response.json()
+  }catch(error) {
+    console.error(error)
+  }
 }
+
 

@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-image: url("https://wallpapercrafter.com/desktop/121261-artwork-illustration-simple-simple-background-minimalism-black-dark-black-background-dark-background-colorful-fictional-fictional-character-fictional-characters-charac.jpg");
+    background-image: url("https://wallpapercave.com/wp/wp6477079.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -9,6 +9,33 @@ body {
  
 }
 
+/*
+
+*/
+
+/************************************ HOME  ************************************/
+
+
+
+.home-container h1 {
+    text-align: center;
+    color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/************************************ HOME END ************************************/
 .siteheader {
     
     display: flex;
@@ -17,7 +44,11 @@ body {
     justify-content: space-around;
     background-color: #00000054;
     height: 10vh;
-    box-shadow: 10px, 20px;
+    top:0;
+   data:image/jpeg;base64,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
+    
+    
+    
 }
 
 
@@ -38,12 +69,14 @@ body {
 .post-container {
     display: flex;
     flex-direction: column;
-    height: 20vh;
+    justify-content: space-around;
     background-color: #00000057;
     color: white;
     margin: 3vh;
     border: 1px solid black
 }
+
+
 
 .links {
     font-size: 1.3em;
@@ -54,6 +87,7 @@ body {
 }
 
 .link-one{
+
 color: white;
 text-decoration: none;
 transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
@@ -96,34 +130,70 @@ transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
 
 
 .link-one:hover {
+    border-top: 1px solid #D744E8;
     color: #D744E8;
    
 }
 .link-two:hover {
+    border-top: 1px solid #712AAE;
     color: #712AAE;
    
 }
 
 .link-three:hover {
+    border-top: 1px solid #220D4A;
     color:  #220D4A;
    
 }
 
 .link-four:hover {
+    border-top: 1px solid #68D4DB;
     color: #68D4DB ;
    
 }
 
 .link-five:hover {
+    border-top: 1px solid #0E1F48;
     color: #0E1F48;
    
 }
 .link-six:hover {
+    border-top: 1px solid #0E1F48;
     color: #0E1F48;
    
 }
 
+.search-post-button {
+    font-size: 2em;
+    color: #D744E8;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+    border: none;
+    background-color: transparent;
+    margin-top: 2vh;
+    margin-left: 20px;
+}
 
+.search-post-button:hover {
+    color: #68D4DB
+   
+}
+
+
+.back-button {
+    font-size: 2em;
+    color: #D744E8;
+    text-decoration: none;
+    transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
+    border: none;
+    background-color: transparent;
+    margin-top: 2vh;
+    
+}
+
+.back-button:hover {
+    color: red;
+}
 
 
 
@@ -328,10 +398,75 @@ transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
 .checkbox {
     height: 2vh;
     width: 2vh;
-    
     margin-left: 2vh;
 }
 
+
+.post-message:focus::-webkit-input-placeholder   {
+    font-size: .75em;
+    position: relative;
+    top: -5px; 
+    transition: 0.2s ease-out;
+}
+.message {
+    color: white;
+    font-size: 1.3em;
+    height: 2vh;
+    width: 20vh;
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    
+    
+}
+
+.message:focus::-webkit-input-placeholder {
+    position: relative;
+    transition: 0.2s ease-out;
+    top: -5px; 
+    font-size: .75em;
+    
+}
+
+
+
+.message-send {
+    font-size: 1.6em;
+    color:#68D4DB;
+    background-color: transparent;
+    height: 3vh;
+    width: 20vh;
+    border:none;
+    transition: color  .5s ease;
+}
+
+.message-send:hover {
+    font-size: 1.6em;
+    color:#712AAE;
+    background-color: transparent;
+    border:none;
+    height: 3vh;
+    width: 20vh;
+}
+
+
+
+.delete-post {
+    font-size: 1.6em;
+    color:#D744E8;
+    background-color: transparent;
+    height: 3vh;
+    width: 20vh;
+    border:none;
+    transition: color  .5s ease;
+    
+}
+
+
+.delete-post:hover {
+    color:red
+}
 /************************************ CREATE POST FORM END  ************************************/
 
 
@@ -340,10 +475,9 @@ transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
 
 /************************************ PROFILE  ************************************/
 .please-login {
-    font-size: 2em;
     color: white;
-    text-decoration: none;
     text-align: center;
+   
     
 }
 
@@ -386,6 +520,33 @@ transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
     justify-content: center;
     margin-bottom: 2vh;
 }
+
+
+
+
+
+
+
+
 /************************************ PROFILE  END ************************************/
+
+
+/************************************ MESSAGES ************************************/
+.message-container {
+    display: flex;
+    flex-direction: column;
+    height: 15vh;
+    flex-grow: 1;
+    background-color: #d844e83d;
+    color: white;
+    margin: 3vh;
+    border: 1px solid black
+}
+
+/************************************ MESSAGES END  ************************************/
+
+
+
+
 
 

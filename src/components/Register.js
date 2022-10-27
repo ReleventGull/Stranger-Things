@@ -22,10 +22,11 @@ const history = useHistory()
             console.log(data.error)
             
             if (data.success) {
-                setToken(data.data.token)
                 localStorage.setItem("token", data.data.token)
+                setToken(data.data.token)
                 history.push("/")
             } else {
+                event.preventDeafult()
                 setErrorMessage(data.error.message)
             }
             
