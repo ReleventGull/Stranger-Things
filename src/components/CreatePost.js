@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {createPost} from "../api/Api"
 import {useHistory} from "react-router-dom"
 
-const CreatePost = ({token, setPosts}) => {
+const CreatePost = ({token, setPosts, LoadPosts}) => {
 const [title, setTitle] = useState('')
 const [desc, setDesc] = useState('')
 const [price, setPrice] = useState('')
@@ -19,7 +19,8 @@ const handleSubmit = async (event) => {
     event.preventDefault()
     const response = await createPost(title, desc, price, deliver, token)
     console.log(response)
-    setPosts((previousState) => [...previousState,  response.data.post])
+     LoadPosts()
+   
     history.push("/posts")
 }
 

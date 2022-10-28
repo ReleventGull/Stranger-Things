@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from "react"
 import ReactDOM from "react-dom/client"
 import {FetchPost, fetchUserData} from "./api/Api"
 import {BrowserRouter, Route, Link, Switch, useHistory } from "react-router-dom";
-import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages} from "./components";
+import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages, PreviewPost} from "./components";
 
 
 
@@ -13,33 +13,39 @@ import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages} 
     const [userData, setUserData] = useState({messages:[], posts:[], username:""})
     console.log(posts)
 
-
     
-    useEffect(() => {
-        async function LoadPosts() {
+    
+    
+    async function LoadPosts() {
         setPosts(await FetchPost(token))
         setPostsResult(await FetchPost(token))
         }
+    
+    useEffect(() => {
         LoadPosts();
       }, []); // Or [] if effect doesn't need props or state
       
       
       const history = useHistory();
 
-    
+
+
+      const fetchUser = async( token ) =>{
+        const response = await fetchUserData(token)
+            setUserData(response.data)
+      }
+   
+      
+      
+      
+      
       useEffect(() => {
-        async function LoadUserData() {
-            if (localStorage.getItem("token")){
-                setToken(localStorage.getItem("token"))
-                const response = await fetchUserData(token)
-                setUserData(response.data)
-                history.push("/")
-                }
-                else {
-                history.push("/login")
-                }
+        async function checkLogin() {
+            localStorage.getItem("token")
+            setToken(localStorage.getItem("token"))
+            fetchUser(token)
         }
-        LoadUserData()
+        checkLogin()
             }, [token]);
 
 
@@ -78,8 +84,13 @@ import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages} 
             <Home token={token} userData={userData}/>
             </Route>
             
+           <Route path="/posts/:postID">
+            <PreviewPost posts={posts} />
+           </Route>
+
+
             <Route  exact path="/posts">
-            <Posts token={token} PostsResults={PostsResults} setPostsResult={setPostsResult} setPosts={setPosts} posts={posts} />
+            <Posts  LoadPosts={LoadPosts}token={token} PostsResults={PostsResults} setPostsResult={setPostsResult} setPosts={setPosts} posts={posts} />
             </Route>
          
             
@@ -93,7 +104,7 @@ import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages} 
             
         
             <Route path="/makepost">
-            <CreatePost setPosts={setPosts} token={token}/>
+            <CreatePost  LoadPosts={LoadPosts} setPosts={setPosts} token={token}/>
             </Route>
 
            <Route path="/profile/messages">

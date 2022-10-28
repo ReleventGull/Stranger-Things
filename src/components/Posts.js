@@ -1,23 +1,31 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom"
 import {default as Postitem} from "./Postsitem"
-
+import {deleteUserPost} from "../api/Api"
 
 const Posts = ({posts, token, setPosts, PostsResults, setPostsResult }) => {
 const [searchInput, setSearchInput] = useState('')
 
 
+const handleDelete = async (postID, token) => {
+    try {
+         await deleteUserPost(postID, token)
+         const newPost = posts.filter(post => post._id !== postID)
+         console.log("New Post", newPost)
+         setPostsResult(newPost)
+        }catch(error) {
+        console.error(error)
+    }
+}
 
 
 const handlesubmit = (event) => {
-   
     event.preventDefault()
     let searchLower = searchInput.toLowerCase()
     setSearchInput('')
     const filteredPost = posts.filter ((post) =>
-        
-        post.description.toLowerCase().includes(searchLower) || post.author.username.toLowerCase().includes(searchLower) || 
-        post.price.toLowerCase().includes(searchInput) || post.title.toLowerCase().includes(searchLower) || post.location.toLowerCase().includes(searchLower)
+    post.description.toLowerCase().includes(searchLower) || post.author.username.toLowerCase().includes(searchLower) || 
+    post.price.toLowerCase().includes(searchInput) || post.title.toLowerCase().includes(searchLower) || post.location.toLowerCase().includes(searchLower)
 )
 setPostsResult(filteredPost)
 }
@@ -46,8 +54,10 @@ return (
          key={post._id}
          post={post} 
          token={token} 
-         setPosts={setPosts}/>
-        
+         setPosts={setPosts}>
+         {post.isAuthor? <button className="delete-post" onClick={() => handleDelete(post._id, token)}>Delete</button>: null}   
+         <Link to={`posts/${post._id}`}className="message-send" >View</Link>
+         </Postitem>
         )}
 </div>
 )}
