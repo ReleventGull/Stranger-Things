@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import {createPost} from "../api/Api"
 import {useHistory} from "react-router-dom"
 
-const CreatePost = ({token, setPosts, LoadPosts}) => {
+const CreatePost = ({token, LoadPosts, fetchUser}) => {
 const [title, setTitle] = useState('')
 const [desc, setDesc] = useState('')
 const [price, setPrice] = useState('')
 const [deliver, setDeliver] = useState(false)
 
 
-
+console.log("Token", token)
 const history = useHistory()
+
 if(!token) {
     history.push("/")
 }
@@ -19,8 +20,8 @@ const handleSubmit = async (event) => {
     event.preventDefault()
     const response = await createPost(title, desc, price, deliver, token)
     console.log(response)
-     LoadPosts()
-   
+    fetchUser(token)
+    LoadPosts()
     history.push("/posts")
 }
 

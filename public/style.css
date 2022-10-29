@@ -455,6 +455,8 @@ transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
     font-size: 1.6em;
     color:#D744E8;
     background-color: transparent;
+    margin: 0;
+    text-align: left;
     height: 3vh;
     width: 20vh;
     border:none;
@@ -534,8 +536,6 @@ transition: color  .3s ease-in-out, box-shadow .3s ease-in-out;
 .message-container {
     display: flex;
     flex-direction: column;
-    height: 15vh;
-    flex-grow: 1;
     background-color: #d844e83d;
     color: white;
     margin: 3vh;

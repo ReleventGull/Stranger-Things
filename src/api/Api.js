@@ -3,7 +3,6 @@
 const BASEURL = "https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT"
 
 export const FetchPost = async (token) => {
-    
     try {
         const response = await fetch(`${BASEURL}/posts`, {
           headers: {
@@ -17,8 +16,6 @@ export const FetchPost = async (token) => {
     }catch(error) {
         console.error(error)
     }
-
-
 }
 
 

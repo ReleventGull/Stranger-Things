@@ -1,20 +1,12 @@
-import react from "react";
-
-
 
 
 const Home = ({userData}) => {
   
     return (
-        <div className="home-container">
-        
+        <div className="home-container">   
+       
         {
-
-         userData ? <h1>Welcome {userData.username}!</h1>: <h1>Loading</h1>
-         
-        
-        
-        
+         userData ? <h1>Welcome {userData.username}!</h1>: <h1>Please Login!</h1>
         }
 
         </div>

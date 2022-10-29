@@ -1,6 +1,6 @@
 import React, { useState,  } from "react"
 import { Link, useHistory  } from "react-router-dom";
-import { checkUsers, fetchUserData } from "../api/Api";
+import { checkUsers } from "../api/Api";
 
 
 

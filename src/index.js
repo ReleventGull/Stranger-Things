@@ -11,7 +11,7 @@ import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages, 
     const [PostsResults, setPostsResult] = useState([])
     const [token, setToken] = useState(window.localStorage.getItem("token" || ""))
     const [userData, setUserData] = useState({messages:[], posts:[], username:""})
-    console.log(posts)
+   
 
     
     
@@ -85,12 +85,12 @@ import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages, 
             </Route>
             
            <Route path="/posts/:postID">
-            <PreviewPost posts={posts} />
+            <PreviewPost token={token} posts={posts} />
            </Route>
-
+           
 
             <Route  exact path="/posts">
-            <Posts  LoadPosts={LoadPosts}token={token} PostsResults={PostsResults} setPostsResult={setPostsResult} setPosts={setPosts} posts={posts} />
+            <Posts  fetchUser={fetchUser} LoadPosts={LoadPosts}token={token} PostsResults={PostsResults} setPostsResult={setPostsResult} setPosts={setPosts} posts={posts} />
             </Route>
          
             
@@ -104,11 +104,11 @@ import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages, 
             
         
             <Route path="/makepost">
-            <CreatePost  LoadPosts={LoadPosts} setPosts={setPosts} token={token}/>
+            <CreatePost   fetchUser={fetchUser} LoadPosts={LoadPosts} setPosts={setPosts} token={token}/>
             </Route>
 
            <Route path="/profile/messages">
-           <Messages userData={userData}/>
+           <Messages  token={token} userData={userData}/>
            </Route>
 
 
@@ -119,7 +119,7 @@ import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages, 
 
            
             <Route path="/mypost">
-            <UserPost token={token} userData={userData}  />
+            <UserPost fetchUser={fetchUser} token={token} userData={userData}  />
             </Route>
 
           

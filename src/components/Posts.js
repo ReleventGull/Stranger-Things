@@ -3,16 +3,16 @@ import {Link} from "react-router-dom"
 import {default as Postitem} from "./Postsitem"
 import {deleteUserPost} from "../api/Api"
 
-const Posts = ({posts, token, setPosts, PostsResults, setPostsResult }) => {
+const Posts = ({posts, token, PostsResults, setPostsResult, LoadPosts, fetchUser }) => {
 const [searchInput, setSearchInput] = useState('')
 
 
 const handleDelete = async (postID, token) => {
     try {
          await deleteUserPost(postID, token)
-         const newPost = posts.filter(post => post._id !== postID)
-         console.log("New Post", newPost)
-         setPostsResult(newPost)
+         fetchUser(token)
+         LoadPosts()
+        
         }catch(error) {
         console.error(error)
     }
@@ -29,7 +29,6 @@ const handlesubmit = (event) => {
 )
 setPostsResult(filteredPost)
 }
-
 
 
 
@@ -54,8 +53,8 @@ return (
          key={post._id}
          post={post} 
          token={token} 
-         setPosts={setPosts}>
-         {post.isAuthor? <button className="delete-post" onClick={() => handleDelete(post._id, token)}>Delete</button>: null}   
+         >
+         {post.isAuthor? <button className="delete-post" onClick={() => handleDelete(post._id, token)}>Delete</button>: null}
          <Link to={`posts/${post._id}`}className="message-send" >View</Link>
          </Postitem>
         )}

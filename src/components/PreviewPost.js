@@ -1,25 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
 import {default as Postitem} from "./Postsitem"
 import { useParams } from "react-router-dom";
+import {createMessage} from "../api/Api"
 
-const PreviewPost = ({posts}) => {
+const PreviewPost = ({posts, token}) => {
+    const [message, setMessage] = useState('')
     const  {postID} = useParams()
-    console.log(postID)
-    console.log(posts)
-    const singlePost = posts.find(post => post._id == postID )
-
-    console.log("Single Post Here",singlePost)
+   
+   
     
+    
+    const sendMessage = async(event, postID, token) => {
+        event.preventDefault()
+        setMessage('')
+        const response = await createMessage(message, token, postID)
+        console.log(response)
+    }
+   
+   
+const singlePost = posts.find(post => post._id == postID )
+  
 return (
-    
 
-
-    
-        singlePost ? <Postitem 
-        key={singlePost._id}
-        post={singlePost} 
-         >
-        {singlePost.isAuthor? <button className="delete-post" onClick={() => handleDelete(singlePost._id, token)}>Delete</button>: null}   
+        singlePost ? 
+        <Postitem key={singlePost._id} post={singlePost} >
+        {singlePost.isAuthor ? null : 
+        <form onSubmit={(event) => sendMessage(event, singlePost._id, token)}>
+        <input  className="message"value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Send Message"></input>
+        <button className="message-send" type="submit">Send Message</button>
+        </form>}
+           
+        
         </Postitem> :
         <div>Loading</div>
 

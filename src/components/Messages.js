@@ -1,14 +1,21 @@
-import react from "react";
+import {useHistory} from "react-router-dom";
 
 
 
-
-const Messages = ({userData}) => {
+const Messages = ({userData, token}) => {
 console.log(userData.posts)
+
+const history = useHistory()
+
+if(!token) {
+history.push("/")
+}
+
 return (
+
+userData.posts? 
 userData.posts.map((post) => 
 post.messages.map( msg =>
-    
     <div className="message-container">
         <h2>From:</h2>
     <div>{msg.fromUser.username}</div>
@@ -18,8 +25,11 @@ post.messages.map( msg =>
 
     </div>
 )
+):
+<div>No posts</div>
 
-))
+)
+
 }
 
 
