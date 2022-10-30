@@ -23,17 +23,36 @@ const singlePost = posts.find(post => post._id == postID )
 return (
 
         singlePost ? 
+        <>
         <Postitem key={singlePost._id} post={singlePost} >
         {singlePost.isAuthor ? null : 
         <form onSubmit={(event) => sendMessage(event, singlePost._id, token)}>
         <input  className="message"value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Send Message"></input>
         <button className="message-send" type="submit">Send Message</button>
-        </form>}
-           
+        </form>
+        }
+        </Postitem> 
+        {
+            singlePost.messages.map( msg =>
+                <div className="message-container">
+                    <h2>From:</h2>
+                <div>{msg.fromUser.username}</div>
+                
+                <h2>Message:</h2>
+                <div>{msg.content}</div>
+            
+                </div>
+            )
+        }
         
-        </Postitem> :
+       
+        </>
+        
+        
+        :
         <div>Loading</div>
 
+        
 
     
     

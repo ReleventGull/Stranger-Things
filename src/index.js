@@ -13,7 +13,7 @@ import { Posts, Register, Login, CreatePost, Profile, UserPost, Home, Messages, 
     const [userData, setUserData] = useState({messages:[], posts:[], username:""})
    
 
-    
+    console.log(posts)
     
     
     async function LoadPosts() {

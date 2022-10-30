@@ -15,9 +15,8 @@ return (
     <h3>Desc.: {post.description}</h3>
     <h3>Location: {post.location}</h3>
     {children}
-    
-    
     </div>
+    
    </>
 )}
 
