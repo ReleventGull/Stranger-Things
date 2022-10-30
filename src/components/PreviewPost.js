@@ -14,7 +14,7 @@ const PreviewPost = ({posts, token}) => {
         event.preventDefault()
         setMessage('')
         const response = await createMessage(message, token, postID)
-        console.log(response)
+        
     }
    
    

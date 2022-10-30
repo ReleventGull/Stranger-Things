@@ -19,13 +19,12 @@ const Login = ({setToken, setUserData}) => {
     event.preventDefault()
     try {
         const data = await checkUsers(username, password)
-        console.log("Data", data)
-        
+       
         
         if (data.success){
             
             localStorage.setItem("token", data.data.token)
-            console.log("Token here", data.data.token)
+            
             setToken(data.data.token)
         
             history.push("/")

@@ -23,7 +23,7 @@ export const FetchPost = async (token) => {
 
 export const isUserLoggedIn = async (token) => {
     if (token) {
-      console.log("token is true",token)
+     
       return true
     } else {
       return false
@@ -115,15 +115,13 @@ export const createPost = async(title, description, price, willDeliver, token) =
 
 
 
-
-
+s
 
 
 
 
 export const deleteUserPost = async(postID, token) => {
   try {
-    console.log("From API", postID, token)
   const response = await fetch(`${BASEURL}/posts/${postID}`, {
   method: "DELETE",
   headers: {

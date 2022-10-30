@@ -19,7 +19,7 @@ const history = useHistory()
     }else {
         try {
             const data = await registerUser(username, password)
-            console.log(data.error)
+          
             
             if (data.success) {
                 localStorage.setItem("token", data.data.token)

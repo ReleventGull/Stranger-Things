@@ -9,7 +9,7 @@ const [price, setPrice] = useState('')
 const [deliver, setDeliver] = useState(false)
 
 
-console.log("Token", token)
+
 const history = useHistory()
 
 if(!token) {
@@ -19,7 +19,7 @@ if(!token) {
 const handleSubmit = async (event) => {
     event.preventDefault()
     const response = await createPost(title, desc, price, deliver, token)
-    console.log(response)
+    
     fetchUser(token)
     LoadPosts()
     history.push("/posts")

@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 
 
 const Messages = ({userData, token}) => {
-console.log(userData.posts)
+
 
 const history = useHistory()
 
